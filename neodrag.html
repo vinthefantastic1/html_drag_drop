@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo drag</title>
+</head>
+<body>
+ 
+
+<script src="https://cdn.jsdelivr.net/npm/@neodrag/vanilla@1.0.1/dist/index.min.js" type="module"></script>
+
+<div id="drag">
+    some data goes here
+  </div>
+
+  <script type="module">
+    import { Draggable } from '@neodrag/vanilla';
+    const dragInstance = new Draggable(document.querySelector('#drag'), {
+      // options here
+});
+  </script>
+</body>
+</html>

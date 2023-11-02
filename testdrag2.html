@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        /* style.css File  */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        
+        body {
+            background-color: azure;
+        }
+        
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            min-height: 2rem;
+            width: 15rem;
+            padding: 10px;
+            background-color: rgb(218, 255, 194);
+            border-radius: 5px;
+            transform: translate(-50%, -50%);
+            cursor: move;
+            user-select: none;
+        }
+        
+        .container header {
+            font-weight: 600;
+            text-transform: uppercase;
+            border-bottom: 1px solid black;
+        }
+        
+        .draggable-container {
+            margin: 10px 0;
+        }
+    </style>
+    <title>Draggable Elements</title>
+</head>
+
+<body>
+    <!-- Wrap each item in a separate .container div -->
+    <div class="container">
+        <header>Draggable element 1</header>
+        <div class="draggable-container">
+            <p>Click on me and try to drag within this Page.</p>
+        </div>
+    </div>
+    <div class="container">
+        <header>Draggable element 2</header>
+        <div class="draggable-container">
+            <p>Click on me and try to drag within this Page.</p>
+        </div>
+    </div>
+    <!-- ... add more containers as needed ... -->
+
+    <script>
+        let currentlyDragged = null;  // variable to track the currently dragged container
+
+        // Select all .container elements
+        const containers = document.querySelectorAll(".container");
+
+        function onMouseDrag({ movementX, movementY }) {
+            let getContainerStyle = window.getComputedStyle(currentlyDragged);
+            let leftValue = parseInt(getContainerStyle.left);
+            let topValue = parseInt(getContainerStyle.top);
+            currentlyDragged.style.left = `${leftValue + movementX}px`;
+            currentlyDragged.style.top = `${topValue + movementY}px`;
+        }
+
+        containers.forEach(container => {
+            container.addEventListener("mousedown", () => {
+                currentlyDragged = container;  // set the currently dragged container
+                container.addEventListener("mousemove", onMouseDrag);
+            });
+        });
+
+        document.addEventListener("mouseup", () => {
+            if (currentlyDragged) {
+                currentlyDragged.removeEventListener("mousemove", onMouseDrag);
+                currentlyDragged = null;  // clear the currently dragged container
+            }
+        });
+    </script>
+</body>
+
+</html>

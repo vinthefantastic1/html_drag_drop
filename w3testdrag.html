@@ -9,6 +9,13 @@
   border: 1px solid #d3d3d3;
 }
 
+.mydrag {   position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+}
+
 #mydivheader, #mydiv2header {
   padding: 10px;
   cursor: move;
@@ -19,6 +26,7 @@
 </style>
 <body>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <h1>Draggable DIV Element</h1>
 
 <p>Click and hold the mouse button down while moving the DIV element</p>
@@ -38,10 +46,19 @@
     <p>DIV</p>
   </div>
 
+  <div id="mydiv3" class="mydrag">
+<p>No header</p>  
+    <p>Move</p>
+    <p>this</p>
+    <p>DIV</p>
+  </div>
+
+
 <script>
 //Make the DIV element draggagle:
 dragElement(document.getElementById("mydiv"));
 dragElement(document.getElementById("mydiv2"));
+dragElement(document.getElementById("mydiv3"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -51,6 +68,7 @@ function dragElement(elmnt) {
   } else {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
+    console.log(elmnt.id )
   }
 
   function dragMouseDown(e) {
